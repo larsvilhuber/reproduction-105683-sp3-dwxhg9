@@ -1,5 +1,5 @@
 local sample = "$sample"
-use "$Path\data\randHIE_clean`sample'.dta", clear
+use "$Path/data/randHIE_clean`sample'.dta", clear
 set matsize 800
 
 * This file produces table 4 in the main document.
@@ -68,7 +68,7 @@ local linear_p_`cat'_all=round(`r(p)',.001)
 
 
 *write lines to collect p values
-*local line0="`line0'"+"&\multicolumn{2}{c}{`cat'}"
+*local line0="`line0'"+"&/multicolumn{2}{c}{`cat'}"
 local line0="`line0'"+"&`cat'"
 *local line1="`line1'"+"&level&log"
 foreach plan in 2 3 4 {
@@ -106,7 +106,7 @@ local level`plan'="`level`plan''"+"&"+string(round(plan_lvl_dif_`cat'[1,`plan'],
 }
 local lineall="`lineall'"+"&"+substr("`linear_p_`cat'_all'",1,3)
 local levelall="`levelall'"+"&"+string(real(substr("`level_p_`cat'_all'",1,3)), "%7.2f")
-*\TEST DIFFs************NOT ARC ELAST*******************************************
+*/TEST DIFFs************NOT ARC ELAST*******************************************
 }
 di "`lineall'"
 di "`levelall'"
@@ -124,28 +124,28 @@ di "`levelall'"
 
 ***** prepare p values table (testing equality of plan FEs across specs)
 foreach plan in 0 1 2 3 4 {
-local line`plan'="`line`plan''"+"\\"
+local line`plan'="`line`plan''"+"//"
 display "`line`plan''"
-local level`plan'="`level`plan''"+"\\"
-local level_se_`plan'="`level_se_`plan''"+"\\"
+local level`plan'="`level`plan''"+"//"
+local level_se_`plan'="`level_se_`plan''"+"//"
 }
-local lineall="`lineall'"+"\\"
-local levelall="`levelall'"+"\\"
+local lineall="`lineall'"+"//"
+local levelall="`levelall'"+"//"
 
 
-file open myfile using "$Path\output\Table_04.txt", write replace
+file open myfile using "$Path/output/Table_04.txt", write replace
 
 file write myfile "Free care`level1'" _n
-file write myfile " $ p(\hat\lambda_{free}=\hat\lambda_{free}^*)$ `level_se_1'" _n
-file write myfile "25\% coinsurance`level2'" _n
-file write myfile " $ p(\hat\lambda_{25}=\hat\lambda_{25}^*)$ `level_se_2'" _n
-file write myfile "50\% coinsurance`level3'" _n
-file write myfile " $ p(\hat\lambda_{50}=\hat\lambda_{50}^*)$ `level_se_3'" _n
-file write myfile "95\% coinsurance`level4'" _n
-file write myfile " $ p(\hat\lambda_{95}=\hat\lambda_{95}^*)$ `level_se_4'" _n
-file write myfile "\hline" _n
-file write myfile "Joint test $ p(\hat\lambda=\hat\lambda^*)$ `levelall'" _n
-file write myfile "\hline" _n
-file write myfile "\hline"
+file write myfile " $ p(/hat/lambda_{free}=/hat/lambda_{free}^*)$ `level_se_1'" _n
+file write myfile "25/% coinsurance`level2'" _n
+file write myfile " $ p(/hat/lambda_{25}=/hat/lambda_{25}^*)$ `level_se_2'" _n
+file write myfile "50/% coinsurance`level3'" _n
+file write myfile " $ p(/hat/lambda_{50}=/hat/lambda_{50}^*)$ `level_se_3'" _n
+file write myfile "95/% coinsurance`level4'" _n
+file write myfile " $ p(/hat/lambda_{95}=/hat/lambda_{95}^*)$ `level_se_4'" _n
+file write myfile "/hline" _n
+file write myfile "Joint test $ p(/hat/lambda=/hat/lambda^*)$ `levelall'" _n
+file write myfile "/hline" _n
+file write myfile "/hline"
 
 file close myfile

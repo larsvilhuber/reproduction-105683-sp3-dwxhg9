@@ -1,8 +1,8 @@
 local sample = "$sample"
-use "$Path\data\randHIE_clean`sample'.dta", clear
+use "$Path/data/randHIE_clean`sample'.dta", clear
 
 
-do "$Path\code\ArcElasticity_prices.ado"
+do "$Path/code/ArcElasticity_prices.ado"
 
 * This file produces table 8 in the main document.
 
@@ -61,12 +61,12 @@ local tempp_C_dif`i'_`cat'_r`r'=r(p)/2
 
 foreach cat in INP OUTP DRUG SUPP DENT MENT {
 * AVG ARC ELASTS -- ONE VARIABLE ***********************************************
-local AEcomp_`cat'_row1_b="All plans&"+string(round(tempb_`cat'[1,19],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,20],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,21],.001), "%7.3f")+"\\"
-local AEcomp_`cat'_row1_se="&("+string(round(tempse_`cat'[1,19],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,20],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,21],.001), "%7.3f")+")\\"
-local AEcomp_`cat'_row2_b="Excluding free care&"+string(round(tempb_`cat'[1,22],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,23],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,24],.001), "%7.3f")+"\\"
-local AEcomp_`cat'_row2_se="&("+string(round(tempse_`cat'[1,22],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,23],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,24],.001), "%7.3f")+")\\"
+local AEcomp_`cat'_row1_b="All plans&"+string(round(tempb_`cat'[1,19],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,20],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,21],.001), "%7.3f")+"//"
+local AEcomp_`cat'_row1_se="&("+string(round(tempse_`cat'[1,19],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,20],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,21],.001), "%7.3f")+")//"
+local AEcomp_`cat'_row2_b="Excluding free care&"+string(round(tempb_`cat'[1,22],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,23],.001), "%7.3f")+"&"+string(round(tempb_`cat'[1,24],.001), "%7.3f")+"//"
+local AEcomp_`cat'_row2_se="&("+string(round(tempse_`cat'[1,22],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,23],.001), "%7.3f")+")&("+string(round(tempse_`cat'[1,24],.001), "%7.3f")+")//"
 
-file open myfile using "$Path\output\randHIE_arcelast_avg_`cat'_prices`sample'.txt", write replace
+file open myfile using "$Path/output/randHIE_arcelast_avg_`cat'_prices`sample'.txt", write replace
 
 file write myfile "`AEcomp_`cat'_row1_b'" _n
 file write myfile "`AEcomp_`cat'_row1_se'" _n
@@ -171,14 +171,14 @@ local Ccomp_`spec'_row4_se="`Ccomp_`spec'_row4_se'"+"&("+string(round(tempse_`ca
 ********************************************************************************
 
 foreach spec in aef pxd dif {
-local Ccomp_`spec'_row1_b="`Ccomp_`spec'_row1_b'"+"\\"
-local Ccomp_`spec'_row1_se="`Ccomp_`spec'_row1_se'"+"\\"
-local Ccomp_`spec'_row2_b="`Ccomp_`spec'_row2_b'"+"\\"
-local Ccomp_`spec'_row2_se="`Ccomp_`spec'_row2_se'"+"\\"
-local Ccomp_`spec'_row3_b="`Ccomp_`spec'_row3_b'"+"\\"
-local Ccomp_`spec'_row3_se="`Ccomp_`spec'_row3_se'"+"\\"
-local Ccomp_`spec'_row4_b="`Ccomp_`spec'_row4_b'"+"\\"
-local Ccomp_`spec'_row4_se="`Ccomp_`spec'_row4_se'"+"\\"
+local Ccomp_`spec'_row1_b="`Ccomp_`spec'_row1_b'"+"//"
+local Ccomp_`spec'_row1_se="`Ccomp_`spec'_row1_se'"+"//"
+local Ccomp_`spec'_row2_b="`Ccomp_`spec'_row2_b'"+"//"
+local Ccomp_`spec'_row2_se="`Ccomp_`spec'_row2_se'"+"//"
+local Ccomp_`spec'_row3_b="`Ccomp_`spec'_row3_b'"+"//"
+local Ccomp_`spec'_row3_se="`Ccomp_`spec'_row3_se'"+"//"
+local Ccomp_`spec'_row4_b="`Ccomp_`spec'_row4_b'"+"//"
+local Ccomp_`spec'_row4_se="`Ccomp_`spec'_row4_se'"+"//"
 }
 
 
@@ -187,7 +187,7 @@ local Ccomp_`spec'_row4_se="`Ccomp_`spec'_row4_se'"+"\\"
 * write coinsurance tables
 
 foreach spec in aef pxd dif {
-file open myfile using "$Path\output\Table_08.txt", write replace
+file open myfile using "$Path/output/Table_08.txt", write replace
 
 file write myfile "`Ccomp_`spec'_row1_b'" _n
 file write myfile "`Ccomp_`spec'_row1_se'" _n

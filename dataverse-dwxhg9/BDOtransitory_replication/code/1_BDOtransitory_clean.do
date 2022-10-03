@@ -89,7 +89,7 @@ label values plan_aef AEF_label
 foreach cat in MED OUTP INP MENT DENT DRUG SUPP {
 gen plan_`cat'=.
 }
-* copayment levels\in	{0,25,50,95,100} depending on plan and year
+* copayment levels/in	{0,25,50,95,100} depending on plan and year
 *						 1, 2, 3, 4, 5
 foreach cat in MED OUTP INP MENT DENT DRUG SUPP {
 * free care: all categories zero copay
@@ -252,13 +252,13 @@ order CONTYR ENRDATE calyr calyear
 *load in CPI from PWT
 compress
 drop _m
-save "$Path\data\randHIE_clean.dta", replace
+save "$Path/data/randHIE_clean.dta", replace
 clear all
-import excel "$Path\data\pwt90.xlsx", sheet("Data") firstrow
+import excel "$Path/data/pwt90.xlsx", sheet("Data") firstrow
 keep if country=="United States"
 keep year pl_con
 rename year calyear
-merge 1:m calyear using "$Path\data\randHIE_clean.dta"
+merge 1:m calyear using "$Path/data/randHIE_clean.dta"
 keep if _m==3
 
 
@@ -479,12 +479,12 @@ gen s`term'_`dum'=`dum'-r(mean)
 
 *
 
-save "$Path\data\randHIE_clean`sample'.dta", replace
+save "$Path/data/randHIE_clean`sample'.dta", replace
 restore
 local sample_round=`sample_round'+1
 }
 
-use "$Path\data\randHIE_cleanoutliers.dta", clear
+use "$Path/data/randHIE_cleanoutliers.dta", clear
 
 
 

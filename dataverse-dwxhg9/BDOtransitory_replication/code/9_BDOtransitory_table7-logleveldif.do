@@ -3,7 +3,7 @@ clear
 set more off
 
 *****************
-use "$Path\data\randHIE_clean`sample'.dta", clear
+use "$Path/data/randHIE_clean`sample'.dta", clear
 
 
 local starson=1
@@ -53,9 +53,9 @@ local tempp_ded`i'_`cat'=r(p)
 *make some tables for displaying arc elasts and their SEs
 
 
-*local loglog_row1_b="Model (\ref{eq:aef})"
+*local loglog_row1_b="Model (/ref{eq:aef})"
 *local loglog_row1_se=""
-*local loglog_row2_b="Model (\ref{eq:deadline})"
+*local loglog_row2_b="Model (/ref{eq:deadline})"
 local loglog_row1_b="(i) All Years"
 local loglog_row1_se=""
 local loglog_row2_b="(ii) D. Years Excl."
@@ -105,19 +105,19 @@ local loglog_row4_b="`loglog_row4_b'"+"&"+string(round(`lambda_ded1_`cat'',.001)
 local loglog_row4_se="`loglog_row4_se'"+"&("+string(round(`tempp_ded1_`cat'',.001), "%7.3f")+")"
 
 }
-local loglog_row1_b="`loglog_row1_b'"+"\\"
-local loglog_row1_se="`loglog_row1_se'"+"\\"
-local loglog_row2_b="`loglog_row2_b'"+"\\"
-local loglog_row2_se="`loglog_row2_se'"+"\\"
-local loglog_row3_b="`loglog_row3_b'"+"\\"
-local loglog_row3_se="`loglog_row3_se'"+"\\"
-local loglog_row4_b="`loglog_row4_b'"+"\\"
-local loglog_row4_se="`loglog_row4_se'"+"\\"
+local loglog_row1_b="`loglog_row1_b'"+"//"
+local loglog_row1_se="`loglog_row1_se'"+"//"
+local loglog_row2_b="`loglog_row2_b'"+"//"
+local loglog_row2_se="`loglog_row2_se'"+"//"
+local loglog_row3_b="`loglog_row3_b'"+"//"
+local loglog_row3_se="`loglog_row3_se'"+"//"
+local loglog_row4_b="`loglog_row4_b'"+"//"
+local loglog_row4_se="`loglog_row4_se'"+"//"
 
-file open myfile using "$Path\output\Table_07.txt", write replace
+file open myfile using "$Path/output/Table_07.txt", write replace
 
-file write myfile "&Inpatient&Outpatient&Drugs&Supplies&Dental&Mental Health\\" _n
-file write myfile "\hline" _n
+file write myfile "&Inpatient&Outpatient&Drugs&Supplies&Dental&Mental Health//" _n
+file write myfile "/hline" _n
 file write myfile "`loglog_row1_b'" _n
 file write myfile "`loglog_row1_se'" _n
 file write myfile "`loglog_row2_b'" _n
@@ -126,6 +126,6 @@ file write myfile "`loglog_row3_b'" _n
 file write myfile "`loglog_row3_se'" _n
 file write myfile "`loglog_row4_b'" _n
 file write myfile "`loglog_row4_se'" _n
-file write myfile "\hline" _n
+file write myfile "/hline" _n
 
 file close myfile
