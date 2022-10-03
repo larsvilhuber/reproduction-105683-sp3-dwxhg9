@@ -1,7 +1,8 @@
 clear
 set more off, permanently
-cd ..
-global Path : pwd
+include "config.do"
+
+global Path "$rootdir"
 cd "$Path/code"
 
 * Install ado files locally
