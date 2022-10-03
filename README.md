@@ -2,6 +2,14 @@
 
 This uses the replication package from Devereux et al (2022), Abadi et al (2022) to reproduce the manuscript's materials.
 
+## WholeTale
+
+For now, this is the unpublished link, accessible only to those with rights to view:
+
+https://dashboard.wholetale.org/run/628d4baa4c73b40732471719
+
+
+
 ## Reproducer
 
 Lars Vilhuber @larsvilhuber
