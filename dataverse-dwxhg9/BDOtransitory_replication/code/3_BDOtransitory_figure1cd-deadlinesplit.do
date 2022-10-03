@@ -1,5 +1,5 @@
 local sample = "$sample"
-use "$Path\data\randHIE_clean`sample'.dta", clear
+use "$Path/data/randHIE_clean`sample'.dta", clear
 
 ********************************************************************************
 * look at CONTYR fixed effects, controlled & not, SEPARATELY. compare to AEF
@@ -77,7 +77,7 @@ twoway (connected fe_`var'_cyr_5_1 CONTYR if ENRTERM==5, msize(large) msymbol(S)
 	   title("`:var label `var'' spending") ///
 	   ytitle(2011`unit' USD) xtitle(Contract year) ///
 	   legend(order(1 "5 year term, free care" 2 "5 year term, 95% coins." 3 "3 year term, free care" 4 "3 year term, 95% coins.")) graphregion(color(white)) name(unconditional, replace)
-graph export "$Path\output\Figure_01c.pdf", replace
+graph export "$Path/output/Figure_01c.pdf", replace
 twoway (connected fe_`var'_cyr_5_ctrls_1 CONTYR if ENRTERM==5, lpattern(dash) msize(large) msymbol(S) mcolor(orange) lcolor(orange)) ///
 	   (connected fe_`var'_cyr_5_ctrls_2 CONTYR if ENRTERM==5, lpattern(dash) msize(large) msymbol(Sh) mcolor(gold) lcolor(gold)) ///
 	   (connected fe_`var'_cyr_3_ctrls_1 CONTYR if ENRTERM==3, lpattern(shortdash) msize(large) msymbol(T) mcolor(teal) lcolor(teal)) ///
@@ -89,5 +89,5 @@ twoway (connected fe_`var'_cyr_5_ctrls_1 CONTYR if ENRTERM==5, lpattern(dash) ms
 	   ytitle(2011`unit' USD) xtitle(Contract year) ///
 	   title("`:var label `var'' spending (conditional)") ///
 	   legend(order(1 "5 year term, free care" 2 "5 year term, 95% coins." 3 "3 year term, free care" 4 "3 year term, 95% coins.")) graphregion(color(white)) name(conditional, replace)
-graph export "$Path\output\Figure_01d.pdf", replace
+graph export "$Path/output/Figure_01d.pdf", replace
 }

@@ -1,5 +1,5 @@
 local sample = "$sample"
-use "$Path\data\randHIE_clean`sample'.dta", clear
+use "$Path/data/randHIE_clean`sample'.dta", clear
 
 * This file produces table 2 in the main document.
 
@@ -25,19 +25,19 @@ eststo: quietly: xi: regress `cat' 	i.plan_aef  lastyr	i.plan_aefT	enrterm `demo
 	
 label var lastyr 			"D.year"
 
-label var _Iplan_aef_2 "25\% plan"
+label var _Iplan_aef_2 "25/% plan"
 label var _Iplan_aef_3 "Mixed coins."
-label var _Iplan_aef_4 "50\% plan"
+label var _Iplan_aef_4 "50/% plan"
 label var _Iplan_aef_5 "Indiv. deductible"
-label var _Iplan_aef_6 "95\% plan"
+label var _Iplan_aef_6 "95/% plan"
 
 local tag=substr("aefT",1,6)
 
-label var _Iplan_`tag'_2 "D.year$\times$25\% plan"
-label var _Iplan_`tag'_3 "D.year$\times$ Mixed c."
-label var _Iplan_`tag'_4 "D.year$\times$50\% plan"
-label var _Iplan_`tag'_5 "D.year$\times$ Indiv. d."
-label var _Iplan_`tag'_6 "D.year$\times$95\% plan"
+label var _Iplan_`tag'_2 "D.year$/times$25/% plan"
+label var _Iplan_`tag'_3 "D.year$/times$ Mixed c."
+label var _Iplan_`tag'_4 "D.year$/times$50/% plan"
+label var _Iplan_`tag'_5 "D.year$/times$ Indiv. d."
+label var _Iplan_`tag'_6 "D.year$/times$95/% plan"
 
 *label var _Ienrterm_2  "Enrol. term = 5"
 label var enrterm "Enrol. term = 5"
@@ -49,16 +49,16 @@ estout, style(tex) ///
 		label varlabels(_cons "Constant (free care)") ///
 		order(_cons) ///
 		starlevels(* .1 ** .05 *** .01) ///
-		mlabels("Model (\ref{eq:aef})" "Model (\ref{eq:flatdeadline})" "Model (\ref{eq:deadline})" "Model (\ref{eq:aef})" "Model (\ref{eq:flatdeadline})" "Model (\ref{eq:deadline})" ) ///
-indicate("Site $\times$ enrol.=siteenrdate_d*" "Cal. years=calyear_d*" "Demographics=sexage_d* tinc")
+		mlabels("Model (/ref{eq:aef})" "Model (/ref{eq:flatdeadline})" "Model (/ref{eq:deadline})" "Model (/ref{eq:aef})" "Model (/ref{eq:flatdeadline})" "Model (/ref{eq:deadline})" ) ///
+indicate("Site $/times$ enrol.=siteenrdate_d*" "Cal. years=calyear_d*" "Demographics=sexage_d* tinc")
 *
-estout using "$Path\output\Table_02.txt", replace style(tex) ///
+estout using "$Path/output/Table_02.txt", replace style(tex) ///
 		cells(b(star fmt(%7.2f)) se(par)) stats(N r2, labels ("N" "R$^2$") fmt(%7.0f %7.2f)) /// 
 		label varlabels(_cons "Constant (free care)") ///
 		order(_cons) ///
 		starlevels(* .1 ** .05 *** .01) ///
-		mlabels("Model (\ref{eq:aef})" "Model (\ref{eq:flatdeadline})" "Model (\ref{eq:deadline})" "Model (\ref{eq:aef})" "Model (\ref{eq:flatdeadline})" "Model (\ref{eq:deadline})" ) ///
-indicate("Site $\times$ enrol.=siteenrdate_d*" "Cal. years=calyear_d*" "Demographics=sexage_d* tinc")
+		mlabels("Model (/ref{eq:aef})" "Model (/ref{eq:flatdeadline})" "Model (/ref{eq:deadline})" "Model (/ref{eq:aef})" "Model (/ref{eq:flatdeadline})" "Model (/ref{eq:deadline})" ) ///
+indicate("Site $/times$ enrol.=siteenrdate_d*" "Cal. years=calyear_d*" "Demographics=sexage_d* tinc")
 
 
 * test coefs for footnotes

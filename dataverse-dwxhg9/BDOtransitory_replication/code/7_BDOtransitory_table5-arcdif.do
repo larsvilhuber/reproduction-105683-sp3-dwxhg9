@@ -1,8 +1,8 @@
 local sample = "$sample"
-use "$Path\data\randHIE_clean`sample'.dta", clear
+use "$Path/data/randHIE_clean`sample'.dta", clear
 
 
-do "$Path\code\ArcElasticity_prices.ado"
+do "$Path/code/ArcElasticity_prices.ado"
 
 * This file produces table 5 in the main document. 
 
@@ -44,8 +44,8 @@ local tempp_ded`i'_`cat'=r(p)
 local ii=0
 foreach spec in "aef" "pxd" "dif" {
 local `spec'mat_`cat'row1_b="Free care"
-local `spec'mat_`cat'row2_b="25\%"
-local `spec'mat_`cat'row3_b="50\%"
+local `spec'mat_`cat'row2_b="25/%"
+local `spec'mat_`cat'row3_b="50/%"
 forval i=1/3 {
 forval r=2/`i' {
 local `spec'mat_`cat'row`i'_b="``spec'mat_`cat'row`i'_b'"+"&"
@@ -70,14 +70,14 @@ display "`ii'"
 }
 
 foreach spec in "aef" "pxd" "dif" {
-file open myfile using "$Path\output\randHIE_arcelast_pairwise_`spec'_`cat'_prices`sample'.txt", write replace
+file open myfile using "$Path/output/randHIE_arcelast_pairwise_`spec'_`cat'_prices`sample'.txt", write replace
 
-file write myfile "``spec'mat_`cat'row1_b'\\" _n
-file write myfile "``spec'mat_`cat'row1_se'\\" _n
-file write myfile "``spec'mat_`cat'row2_b'\\" _n
-file write myfile "``spec'mat_`cat'row2_se'\\" _n
-file write myfile "``spec'mat_`cat'row3_b'\\" _n
-file write myfile "``spec'mat_`cat'row3_se'\\" _n
+file write myfile "``spec'mat_`cat'row1_b'//" _n
+file write myfile "``spec'mat_`cat'row1_se'//" _n
+file write myfile "``spec'mat_`cat'row2_b'//" _n
+file write myfile "``spec'mat_`cat'row2_se'//" _n
+file write myfile "``spec'mat_`cat'row3_b'//" _n
+file write myfile "``spec'mat_`cat'row3_se'//" _n
 
 file close myfile
 }
@@ -86,12 +86,12 @@ file close myfile
 
 foreach cat in INP OUTP DRUG SUPP DENT MENT {
 * AVG ARC ELASTS -- ONE VARIABLE ***********************************************
-local AEcomp_`cat'_row1_b="All plans&"+string(round(tempb_`cat'[1,19],.001))+"&"+string(round(tempb_`cat'[1,20],.001))+"&"+string(round(tempb_`cat'[1,21],.001))+"\\"
-local AEcomp_`cat'_row1_se="&("+string(round(tempse_`cat'[1,19],.001))+")&("+string(round(tempse_`cat'[1,20],.001))+")&("+string(round(tempse_`cat'[1,21],.001))+")\\"
-local AEcomp_`cat'_row2_b="Excluding free care&"+string(round(tempb_`cat'[1,22],.001))+"&"+string(round(tempb_`cat'[1,23],.001))+"&"+string(round(tempb_`cat'[1,24],.001))+"\\"
-local AEcomp_`cat'_row2_se="&("+string(round(tempse_`cat'[1,22],.001))+")&("+string(round(tempse_`cat'[1,23],.001))+")&("+string(round(tempse_`cat'[1,24],.001))+")\\"
+local AEcomp_`cat'_row1_b="All plans&"+string(round(tempb_`cat'[1,19],.001))+"&"+string(round(tempb_`cat'[1,20],.001))+"&"+string(round(tempb_`cat'[1,21],.001))+"//"
+local AEcomp_`cat'_row1_se="&("+string(round(tempse_`cat'[1,19],.001))+")&("+string(round(tempse_`cat'[1,20],.001))+")&("+string(round(tempse_`cat'[1,21],.001))+")//"
+local AEcomp_`cat'_row2_b="Excluding free care&"+string(round(tempb_`cat'[1,22],.001))+"&"+string(round(tempb_`cat'[1,23],.001))+"&"+string(round(tempb_`cat'[1,24],.001))+"//"
+local AEcomp_`cat'_row2_se="&("+string(round(tempse_`cat'[1,22],.001))+")&("+string(round(tempse_`cat'[1,23],.001))+")&("+string(round(tempse_`cat'[1,24],.001))+")//"
 
-file open myfile using "$Path\output\randHIE_arcelast_avg_`cat'_prices`sample'.txt", write replace
+file open myfile using "$Path/output/randHIE_arcelast_avg_`cat'_prices`sample'.txt", write replace
 
 file write myfile "`AEcomp_`cat'_row1_b'" _n
 file write myfile "`AEcomp_`cat'_row1_se'" _n
@@ -103,9 +103,9 @@ file close myfile
 }
 
 
-*local AEcomp_row1_b="Model (\ref{eq:aef})"
+*local AEcomp_row1_b="Model (/ref{eq:aef})"
 *local AEcomp_row1_se=""
-*local AEcomp_row2_b="Model (\ref{eq:deadline})"
+*local AEcomp_row2_b="Model (/ref{eq:deadline})"
 local AEcomp_row1_b="(i) All Years"
 local AEcomp_row1_se=""
 local AEcomp_row2_b="(ii) Non-deadline Years"
@@ -141,16 +141,16 @@ local AEcomp_row4_b="`AEcomp_row4_b'"+"&"+string(round(tempb_`cat'[1,25],.001), 
 local AEcomp_row4_se="`AEcomp_row4_se'"+"&("+string(round(tempse_`cat'[1,25],.001), "%7.3f")+")"
 
 }
-local AEcomp_row1_b="`AEcomp_row1_b'"+"\\"
-local AEcomp_row1_se="`AEcomp_row1_se'"+"\\"
-local AEcomp_row2_b="`AEcomp_row2_b'"+"\\"
-local AEcomp_row2_se="`AEcomp_row2_se'"+"\\"
-local AEcomp_row3_b="`AEcomp_row3_b'"+"\\"
-local AEcomp_row3_se="`AEcomp_row3_se'"+"\\"
-local AEcomp_row4_b="`AEcomp_row4_b'"+"\\"
-local AEcomp_row4_se="`AEcomp_row4_se'"+"\\"
+local AEcomp_row1_b="`AEcomp_row1_b'"+"//"
+local AEcomp_row1_se="`AEcomp_row1_se'"+"//"
+local AEcomp_row2_b="`AEcomp_row2_b'"+"//"
+local AEcomp_row2_se="`AEcomp_row2_se'"+"//"
+local AEcomp_row3_b="`AEcomp_row3_b'"+"//"
+local AEcomp_row3_se="`AEcomp_row3_se'"+"//"
+local AEcomp_row4_b="`AEcomp_row4_b'"+"//"
+local AEcomp_row4_se="`AEcomp_row4_se'"+"//"
 
-file open myfile using "$Path\output\Table_05.txt", write replace
+file open myfile using "$Path/output/Table_05.txt", write replace
 
 file write myfile "`AEcomp_row1_b'" _n
 file write myfile "`AEcomp_row1_se'" _n

@@ -1,6 +1,7 @@
 clear
 set more off, permanently
-global Path "C:/Users/`c(username)'/Dropbox/UCD/RAND_health/CJE_ACCEPTANCE/BDOtransitory_replication"
+cd ..
+global Path : pwd
 cd "$Path/code"
 
 * Install ado files locally
@@ -9,8 +10,8 @@ capture mkdir "$adobase"
 sysdir set PERSONAL "$adobase/ado/personal"
 sysdir set PLUS "$adobase/ado/plus"
 sysdir set SITE "$adobase/ado/site"
-ssc install estout
-ssc install outtable
+* ssc install estout
+* ssc install outtable
 
 
 * Cleaning
